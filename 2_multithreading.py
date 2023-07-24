@@ -1,0 +1,27 @@
+from threading import Thread
+
+
+def fibonacci(n):
+    if n < 0:
+        print("Incorrect input")
+    elif n == 0:
+        return 0
+    elif n == 1 or n == 2:
+        return 1
+    else:
+        return fibonacci(n - 1) + fibonacci(n - 2)
+
+
+if __name__ == "__main__":
+    number = 30
+    t1 = Thread(target=fibonacci, args=[number])
+    t2 = Thread(target=fibonacci, args=[number])
+    t3 = Thread(target=fibonacci, args=[number])
+
+    t1.start()
+    t2.start()
+    t3.start()
+
+    t1.join()
+    t2.join()
+    t3.join()
